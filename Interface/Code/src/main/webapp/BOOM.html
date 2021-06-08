@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+
+    <title>Home Page</title>
+</head>
+
+<body style="background-image: url('BG2.jpg') ;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center;
+-moz-background-size: cover;
+-webkit-background-size: cover;
+-o-background-size: cover;
+background-size: cover;">
+
+    <header>
+        <h1 class="display-1 text-center my-4">BOOM</h1>
+        <br/>
+        <br/>
+    </header>
+
+    <div class="container">
+        <!-- BUTTON ADDONS -->
+
+        <form action=Search?page=1 method=get id=Search>  
+        <div class="input-group mb-3">
+            <input class="form-control" autocomplete="off" list="suggestions" id="topic" type="text" placeholder="Search Boom" name="topic" oninput="Suggest()" autofocus  required>
+                                            <datalist id="suggestions">
+                                            </datalist>
+            <div class="input-group-append">
+                <button class="btn btn-outline-dark" type=submit value="Submit">Search</button>
+            </div>
+        </div>
+       </form>
+    </div>
+    <!-- ./container    <div style="margin-top:500px;"></div>  -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+    var request;  
+ function Suggest() {
+      var v = document.getElementById("topic").value;
+      var url="HandelSuggestions?value="+v;  
+      if(window.XMLHttpRequest){  
+    	  request=new XMLHttpRequest();  
+    	  }  
+    	  else if(window.ActiveXObject){  
+    	  request=new ActiveXObject("Microsoft.XMLHTTP");  
+    	  }  
+      try  
+      {  
+      request.onreadystatechange=getInfo;  
+      request.open("GET",url,true);  
+      request.send();  
+      }  
+      catch(e)  
+      {  
+      alert("Unable to connect to server");  
+      }  
+          
+      //document.getElementById("suggestions").innerHTML = '<option value="' + x + '" />';
+    }
+ function getInfo(){  
+	 if(request.readyState==4){  
+	 var val=request.responseText;  
+	 document.getElementById('suggestions').innerHTML=val;  
+	 } 
+ }
+</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
